@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>リダイレクトページ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="message"></div>
+
+  <script>
+    (function () {
+      const ua = navigator.userAgent.toLowerCase();
+
+      // TikTok内ブラウザの判定を強化
+      const isTikTok = ua.includes("tiktok")
+        || ua.includes("trill_")
+        || ua.includes("bytedance")
+        || ua.includes("bytedancewebview");
+
+      const messageElement = document.getElementById("message");
+
+      if (isTikTok) {
+        messageElement.textContent = "右上の「…」から外部ブラウザで開いてください。";
+      } else {
+        window.location.href = "https://lin.ee/LTFo1tX";
+      }
+    })();
+  </script>
+</body>
+</html>
