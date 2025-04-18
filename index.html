@@ -2,32 +2,47 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>リダイレクトページ</title>
+  <title>外部ブラウザで開いてください</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
+      margin: 0;
       font-family: sans-serif;
+      background: #fff;
       text-align: center;
       padding: 2rem;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .arrow {
+      max-width: 100%;
+      height: auto;
+      margin: 2rem auto;
+      display: block;
     }
   </style>
 </head>
 <body>
-  <div id="message"></div>
+  <div class="container" id="content"></div>
 
   <script>
     (function () {
       const ua = navigator.userAgent.toLowerCase();
-
-      // TikTok内ブラウザの判定を強化
       const isTikTok = ua.includes("tiktok")
         || ua.includes("trill_")
         || ua.includes("bytedance")
         || ua.includes("bytedancewebview");
 
-      const messageElement = document.getElementById("message");
+      const content = document.getElementById("content");
 
       if (isTikTok) {
-        messageElement.textContent = "右上の「…」から外部ブラウザで開いてください。";
+        content.innerHTML = `
+          <img src="arrow.png" alt="右上を指す案内画像" class="arrow" />
+        `;
       } else {
         window.location.href = "https://lin.ee/LTFo1tX";
       }
